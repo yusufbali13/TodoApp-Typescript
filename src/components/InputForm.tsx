@@ -1,19 +1,19 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 
 // type Task = string;
 
 interface IInputForm {
-  addTodo:AddFn;
+  addTodo: AddFn;
 }
 
-const InputForm:React.FC<IInputForm> = ({addTodo}) => {
+const InputForm: React.FC<IInputForm> = ({ addTodo }) => {
   // const [task,setTask] = useState<Task>("")
-  const [task,setTask] = useState("")
-  
-  const handleClick=()=>{
+  const [task, setTask] = useState("");
+
+  const handleClick = () => {
     addTodo(task);
-    setTask("")
-  }
+    setTask("");
+  };
   return (
     <div className="input-form">
       <input
@@ -22,7 +22,7 @@ const InputForm:React.FC<IInputForm> = ({addTodo}) => {
         type="text"
         maxLength={40}
         value={task}
-        onChange={(e)=>setTask(e.target.value)}      
+        onChange={(e) => setTask(e.target.value)}
       />
       <button
         className="btn-hover btn-color"
@@ -33,7 +33,7 @@ const InputForm:React.FC<IInputForm> = ({addTodo}) => {
         Add New Todo
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default InputForm
+export default InputForm;
