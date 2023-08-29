@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import InputForm from "../components/InputForm";
 import TodoList from "../components/TodoList";
 
-const url = "https://63878fa2d9b24b1be3f43d73.mockapi.io/todos";
+const url = "https://64ecd9b6f9b2b70f2bfb0a77.mockapi.io/todos";
 
 const Home = () => {
   //custom hooktan da çekip burada çağırıp ve componentlere props olarak geçebiliriz. Bunları ilgili componentlerde de çağırabilirdik. Ama propslar typescriptte nasıl kullanılıyor onu görmek adına bu şekilde kullanabiliriz
