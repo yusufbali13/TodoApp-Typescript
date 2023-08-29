@@ -4,10 +4,9 @@ import axios from "axios";
 //todo ile ilgili fonksiyonları custom hooksta topladık
 const useAxios = () => {
   const [todos, setTodos] = useState<TodoType[]>([]); //TodoType array olarak kabul ediyor
+  const url: string = import.meta.env.VITE_BASE_URL;
   const getTodos = async () => {
-    const { data } = await axios.get<TodoType[]>(
-      "https://64ecd9b6f9b2b70f2bfb0a77.mockapi.io/api/todos"
-    ); //gelen response a göre belirledik bu ne işe yarıyor gelen datanın fieldlarına erişebiliyoruz
+    const { data } = await axios.get<TodoType[]>(url); //gelen response a göre belirledik bu ne işe yarıyor gelen datanın fieldlarına erişebiliyoruz
     // console.log(data)
     setTodos(data);
   };
@@ -16,10 +15,7 @@ const useAxios = () => {
       task: text,
       isDone: false,
     };
-    const { data } = await axios.post<TodoType>(
-      "https://64ecd9b6f9b2b70f2bfb0a77.mockapi.io/api/todos",
-      newTodo
-    );
+    const { data } = await axios.post<TodoType>(url, newTodo);
     if (data) {
       getTodos();
     }
@@ -31,19 +27,14 @@ const useAxios = () => {
       task: item.task,
       isDone: !item.isDone,
     };
-    const { data } = await axios.put<TodoType>(
-      `https://64ecd9b6f9b2b70f2bfb0a77.mockapi.io/api/todos/${item.id}`,
-      updateTodo
-    );
+    const { data } = await axios.put<TodoType>(`${url}/${item.id}`, updateTodo);
     if (data) {
       getTodos();
     }
   };
   const deleteTodo: DeleteFn = async (id) => {
     try {
-      const res = await axios.delete<TodoType>(
-        `https://64ecd9b6f9b2b70f2bfb0a77.mockapi.io/api/todos/${id}`
-      );
+      const res = await axios.delete<TodoType>(`${url}/${id}`);
       console.log(res);
       getTodos();
     } catch (error) {
